@@ -39,21 +39,21 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     backgroundColor: "#f4f4f4",
     paddingTop: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
-  logo : {
-    width: 60
+  logo: {
+    width: 60,
   },
   headerText: {
     color: "#335d2d",
     fontSize: "30px",
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       fontSize: "20px",
     },
   },
   headerIcon: {
     fontSize: "30px",
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down("sm")]: {
       fontSize: "20px",
     },
   },
@@ -63,15 +63,17 @@ const useStyles = makeStyles((theme) => ({
     padding: 15,
     backgroundColor: "#206a5d",
     color: "#eff48e",
-    [theme.breakpoints.down('xs')]: {
-     flexDirection: "column"
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
     },
   },
-  bannerButton : {
-    marginTop : 10,
+  bannerButton: {
+    [theme.breakpoints.down("xs")]: {
+     margin: 10,
+    },
   },
-  bannerIcon : {
-    marginLeft : 5,
+  bannerIcon: {
+    marginLeft: 5,
   },
 
   //AddTodo and Edit Todo Components
@@ -88,9 +90,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginTop: 20,
+    color: "yellow",
   },
   box: {
     width: "45%",
+  },
+
+  buttons: {
+    color: "#206a5d",
+  },
+
+  //Table
+  tableContainer : {
+    width: "90%",
+    margin: "10px auto",
+    paddingTop: 20
   },
 
   //Alert
@@ -104,10 +118,13 @@ const useStyles = makeStyles((theme) => ({
   //SearchBox
   searchBoxContainer: {
     width: 500,
-    "& > * + *": {
+   /*  "& > * + *": {
       marginTop: theme.spacing(5),
-    },
-    margin: "20px auto"
+    }, */
+    margin: "0 auto 30px",
+    [theme.breakpoints.down("xs")]: {
+      width:340,
+     },
   },
 
   //TodoTable

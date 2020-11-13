@@ -134,8 +134,8 @@ export default function EnhancedTable(props) {
 
   return (
     <div className={classes.todoContainer}>
-      <Paper className={classes.todoPaper}>
       <SearchBox setSelectedTags={setSelectedTags} />
+      <Paper className={classes.todoPaper}>
         <TableToolBar
           numSelected={selected.length}
           selected={selected}

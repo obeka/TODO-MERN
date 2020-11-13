@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 //import { makeStyles } from "@material-ui/core/styles";
 
-
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import ListContainer from "../components/ListContainer";
@@ -9,8 +8,10 @@ import { AuthContext } from "../context/auth-context";
 import axios from "axios";
 import Alert from "../components/Alert";
 import TodoTable from "../components/TodoTable";
+import useStyles from "../styles/material-ui";
 
 function Todos() {
+  const classes = useStyles();
   const auth = useContext(AuthContext);
   const [userTodos, setUserTodos] = useState([]);
   const [count, setCount] = useState(0);
@@ -37,8 +38,16 @@ function Todos() {
       {alert.hasAlert && <Alert alert={alert} setAlert={setAlert} />}
       <Header />
       <Banner setCount={setCount} />
-      {userTodos && <TodoTable userTodos={userTodos} setCount={setCount} setAlert={setAlert}/>}
-     {/*  <ListContainer userTodos={userTodos} setCount={setCount} setAlert={setAlert}/>  */}
+      <div className={classes.tableContainer}>
+        {userTodos && (
+          <TodoTable
+            userTodos={userTodos}
+            setCount={setCount}
+            setAlert={setAlert}
+          />
+        )}
+      </div>
+      {/*  <ListContainer userTodos={userTodos} setCount={setCount} setAlert={setAlert}/>  */}
     </>
   );
 }
