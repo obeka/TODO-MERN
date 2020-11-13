@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import useStyles from "../styles/material-ui";
 import useForm from "../hook/form-hook";
 import axios from "axios";
@@ -21,6 +22,7 @@ export default function Auth() {
   const history = useHistory();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({
     hasAlert: false,
     alertMsg: {},
@@ -40,6 +42,7 @@ export default function Auth() {
     //console.log(formState);
 
     if (isLoginMode) {
+      setIsLoading(true);
       try {
         const response = await axios.post(
           "http://localhost:5000/user/login",
@@ -50,14 +53,16 @@ export default function Auth() {
           auth.userId = response.data.userId;
           auth.token = response.data.token;
           auth.isLoggedIn = true;
-          auth.userName = response.data.username
+          auth.userName = response.data.username;
           auth.login(auth.token, auth.userId, auth.userName);
+          setIsLoading(false);
           history.push("/");
         } else {
+          setIsLoading(false);
           history.push("/auth");
         }
       } catch (error) {
-        //alert(error.response.data)
+        setIsLoading(false);
         setAlert({
           hasAlert: true,
           alertMsg: error.response.data,
@@ -66,6 +71,7 @@ export default function Auth() {
       }
     } else {
       try {
+        setIsLoading(true);
         if (formState.password !== formState.password2) {
           //alert("Passwords must be matched.");
           setAlert({
@@ -84,12 +90,14 @@ export default function Auth() {
           auth.token = response.data.token;
           auth.isLoggedIn = true;
           auth.login(auth.isLoggedIn);
+          setIsLoading(false);
           history.push("/");
         } else {
+          setIsLoading(false);
           history.push("/auth");
         }
       } catch (error) {
-        //alert(error.response.data);
+        setIsLoading(false);
         setAlert({
           hasAlert: true,
           alertMsg: error.response.data,
@@ -104,13 +112,22 @@ export default function Auth() {
       <Grid item xs={false} sm={4} md={7} className={classes.backgroundImage} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.authPaper}>
+          {isLoading && (
+            <>
+              <CircularProgress size={20} className={classes.loading} />
+            </>
+          )}
           <Avatar className={classes.lock}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             {isLoginMode ? "Sign in" : "Sign up"}
           </Typography>
-          <form className={classes.authForm} noValidate onSubmit={submitHandler}>
+          <form
+            className={classes.authForm}
+            noValidate
+            onSubmit={submitHandler}
+          >
             {alert.hasAlert && <Alert alert={alert} setAlert={setAlert} />}
             {!isLoginMode && (
               <TextField
@@ -167,38 +184,42 @@ export default function Auth() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             /> */}
-            {isLoginMode ? ( <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.authSubmit}
-              disabled={!(formState.email && formState.password)}
-            >
-              Sign In
-            </Button>) : (<Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.authSubmit}
-              disabled={
-                !(
-                  formState.email &&
-                  formState.password &&
-                  formState.username &&
-                  formState.password2
-                )
-              }
-            >
-              Sign Up
-            </Button>)}
-            
+            {isLoginMode ? (
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.authSubmit}
+                disabled={!(formState.email && formState.password)}
+              >
+                Sign In
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.authSubmit}
+                disabled={
+                  !(
+                    formState.email &&
+                    formState.password &&
+                    formState.username &&
+                    formState.password2
+                  )
+                }
+              >
+                Sign Up
+              </Button>
+            )}
+
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2" onClick={switchModeHandler}>

@@ -100,13 +100,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#206a5d",
   },
 
-  //Table
-  tableContainer : {
-    width: "90%",
-    margin: "10px auto",
-    paddingTop: 20
-  },
-
   //Alert
   alertContainer: {
     width: "100%",
@@ -118,13 +111,17 @@ const useStyles = makeStyles((theme) => ({
   //SearchBox
   searchBoxContainer: {
     width: 500,
-   /*  "& > * + *": {
-      marginTop: theme.spacing(5),
-    }, */
     margin: "0 auto 30px",
     [theme.breakpoints.down("xs")]: {
       width:340,
      },
+  },
+
+  //Table
+  tableContainer : {
+    width: "90%",
+    margin: "10px auto",
+    paddingTop: 20
   },
 
   //TodoTable
@@ -158,8 +155,9 @@ const useStyles = makeStyles((theme) => ({
   highlight:
     theme.palette.type === "light"
       ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          //color: theme.palette.secondary.main,
+          color: "#206a5d",
+          backgroundColor: lighten("#206a5d", 0.85),
         }
       : {
           color: theme.palette.text.primary,

@@ -13,7 +13,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import useStyles from "../styles/material-ui";
 
-
 import TableHeadBar from "./TableHeadBar";
 import TableToolBar from "./TableToolBar";
 import SearchBox from "./SearchBox";
@@ -144,7 +143,7 @@ export default function EnhancedTable(props) {
           setSelected={setSelected}
         />
         <TableContainer>
-
+       
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
