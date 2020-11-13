@@ -50,7 +50,6 @@ function stableSort(array, comparator) {
 export default function EnhancedTable(props) {
   const { userTodos, setCount, setAlert } = props;
   const [selectedTags, setSelectedTags] = useState([]);
-  console.log(userTodos);
   let rows;
   if (selectedTags.length === 0) {
     rows = userTodos.map((todo) =>

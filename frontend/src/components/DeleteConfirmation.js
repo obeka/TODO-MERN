@@ -30,7 +30,6 @@ function DeleteConfirmation(props) {
         `http://localhost:5000/todo/many`,
         { headers: { Authorization: `Bearer ${auth.token}` }, data: {selected, userId: auth.userId} }
       );
-      console.log(responseData);
       setCount((prev) => prev + 1);
       setIsLoading(false);
       setAlert({
@@ -41,7 +40,6 @@ function DeleteConfirmation(props) {
       setSelected([])
       handleClose();
     } catch (error) {
-      console.log(error.message);
       setAlert({
         hasAlert: true,
         alertMsg: "Failure: Todo can not be deleted!",

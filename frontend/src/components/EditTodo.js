@@ -17,7 +17,6 @@ import useForm from "../hook/form-hook";
 export default function EditDialog(props) {
   const classes = useStyles();
   const { loadedEditTodo, setCount, id , setAlert} = props;
-  console.log(loadedEditTodo);
   const auth = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,7 +48,6 @@ export default function EditDialog(props) {
         });
       }
     } catch (err) {
-      console.log(err);
       setAlert({
         hasAlert: true,
         alertMsg: "Failure : Todo can not be updated!",

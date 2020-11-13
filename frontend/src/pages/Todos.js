@@ -25,7 +25,6 @@ function Todos() {
 
   useEffect(() => {
     const fetchUserTodo = async () => {
-      console.log("Fetching user todos...");
       try {
         setIsLoading(true);
         const responseData = await axios.get(

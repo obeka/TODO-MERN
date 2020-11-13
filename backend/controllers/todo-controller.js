@@ -113,69 +113,12 @@ const deleteATodo = async (req, res, next) => {
 
 const deleteMany = async (req, res, next) => {
   const { userId, selected } = req.body;
-  console.log(selected, userId);
-
-  //let user;
   try {
-    //const sess = await mongoose.startSession();
-    //sess.startTransaction();
-    await Todo.deleteMany({_id : {$in : selected }})
-   /*  user = await User.findById(userId).populate("todos");
-    console.log(user);
-    user.todos.update({ "$pull": { "array": { "$in": selected } } },{ "multi": true }) */
-    //await user.save({ session: sess})
-   // await sess.commitTransaction();
+    await Todo.deleteMany({ _id: { $in: selected } });
     res.status(200).json({ message: "Deleted todo(s)." });
-
   } catch (error) {
     res.status(500).send("Something went wrong, could not delete todosssss.");
-  } 
-
-  /* todoIds.map(async (todoId) => {
-    let todo;
-    console.log("deleted");
-    try {
-      todo = await Todo.findById(todoId).populate("creator");
-      console.log("deleted");
-      const sess = await mongoose.startSession();
-      sess.startTransaction();
-      await todo.remove({ session: sess });
-      todo.creator.todos.pull(todo);
-      await todo.creator.save({ session: sess });
-      await sess.commitTransaction();
-    } catch (err) {
-      res.status(500).send("Something went wrong, could not delete todo.");
-    } */
-
-  /* try {
-      const sess = await mongoose.startSession();
-      sess.startTransaction();
-      await todo.remove({ session: sess });
-      todo.creator.todos.pull(todo);
-      await todo.creator.save({ session: sess });
-      await sess.commitTransaction();
-    } catch (err) {
-      res.status(500).send("Something went wrong, could not delete todo.");
-    } 
-  });*/
-  /* let todo;
-  try {
-    todo = await Todo.findById(todoId).populate("creator");
-  } catch (err) {
-    res.status(500).send("Something went wrong, could not delete todo.");
   }
-
-  try {
-    const sess = await mongoose.startSession();
-    sess.startTransaction();
-    await todo.remove({ session: sess });
-    todo.creator.todos.pull(todo);
-    await todo.creator.save({ session: sess });
-    await sess.commitTransaction();
-  } catch (err) {
-    res.status(500).send("Something went wrong, could not delete todo.");
-  }
-*/
 };
 
 exports.getATodoById = getATodoById;

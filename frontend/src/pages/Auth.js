@@ -39,8 +39,6 @@ export default function Auth() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    //console.log(formState);
-
     if (isLoginMode) {
       setIsLoading(true);
       try {
@@ -48,7 +46,6 @@ export default function Auth() {
           "http://localhost:5000/user/login",
           formState
         );
-        console.log(response);
         if (response.status === 200) {
           auth.userId = response.data.userId;
           auth.token = response.data.token;
