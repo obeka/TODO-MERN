@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { lighten, makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,12 +19,10 @@ function TableToolBar(props) {
   const classes = useStyles();
   const {
     numSelected,
-    todoId,
     setCount,
     selected,
     setAlert,
     setSelected,
-    setSelectedTags
   } = props;
   const [open, setOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -76,7 +73,6 @@ function TableToolBar(props) {
               <IconButton aria-label="edit">
                 <EditIcon
                   open={open}
-                  setCount={setCount}
                   onClick={editHandler}
                 />
               </IconButton>
@@ -85,7 +81,6 @@ function TableToolBar(props) {
               <IconButton aria-label="delete">
                 <DeleteIcon
                   open={open}
-                  setCount={setCount}
                   onClick={() => setOpenDeleteDialog(true)}
                 />
               </IconButton>

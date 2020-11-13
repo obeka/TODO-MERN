@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   lock: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#206a5d",
   },
   authForm: {
     width: "100%", // Fix IE 11 issue.
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   authSubmit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#206a5d",
   },
 
   //Header
@@ -69,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bannerButton: {
     [theme.breakpoints.down("xs")]: {
-     margin: 10,
+      margin: 10,
     },
   },
   bannerIcon: {
@@ -100,6 +101,10 @@ const useStyles = makeStyles((theme) => ({
     color: "#206a5d",
   },
 
+  buttonss : {
+    backgroundColor: "#206a5d"
+  },
+
   //Alert
   alertContainer: {
     width: "100%",
@@ -113,15 +118,15 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     margin: "0 auto 30px",
     [theme.breakpoints.down("xs")]: {
-      width:340,
-     },
+      width: 340,
+    },
   },
 
   //Table
-  tableContainer : {
+  tableContainer: {
     width: "90%",
     margin: "10px auto",
-    paddingTop: 20
+    paddingTop: 20,
   },
 
   //TodoTable

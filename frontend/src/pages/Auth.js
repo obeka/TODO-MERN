@@ -109,8 +109,18 @@ export default function Auth() {
   return (
     <Grid container component="main" className={classes.authContainer}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.backgroundImage} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={false} sm={6} md={7} className={classes.backgroundImage}>
+        <div className="auth-text">
+          {" "}
+          <img
+            src="https://i.postimg.cc/TPLwgVQj/todoLogo.png"
+            alt="logo"
+            className={classes.logo}
+          />
+          TODO VAULT
+        </div>
+      </Grid>
+      <Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
         <div className={classes.authPaper}>
           {isLoading && (
             <>
@@ -189,18 +199,16 @@ export default function Auth() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
                 className={classes.authSubmit}
                 disabled={!(formState.email && formState.password)}
               >
-                Sign In
+               <span style={{color: "white"}}>SIGN IN</span>
               </Button>
             ) : (
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
                 className={classes.authSubmit}
                 disabled={
                   !(
@@ -211,7 +219,7 @@ export default function Auth() {
                   )
                 }
               >
-                Sign Up
+               <span style={{color: "white"}}>SIGN UP</span>
               </Button>
             )}
 

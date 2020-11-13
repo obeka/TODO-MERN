@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from "react";
+import React from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import useStyles from "../styles/material-ui";
 

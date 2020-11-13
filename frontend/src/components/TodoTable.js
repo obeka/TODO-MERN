@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { lighten, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
@@ -48,13 +46,6 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
-
-const headCells = [
-  { id: "todoName", numeric: false, disablePadding: false, label: "Todo Name" },
-  { id: "label", numeric: false, disablePadding: true, label: "Label" },
-  { id: "date", numeric: true, disablePadding: false, label: "Date" },
-  { id: "when", numeric: true, disablePadding: false, label: "When" },
-];
 
 export default function EnhancedTable(props) {
   const { userTodos, setCount, setAlert } = props;

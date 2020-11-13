@@ -27,10 +27,55 @@
 .App-link {
   color: #61dafb;
 }
-/* .MuiInput-underline::after {
-  border-bottom-color: #206a5d !important;
-} */
 
+.auth-text {
+  color: #fffbf1;
+  text-shadow: 0 20px 25px #2e2e31, 0 40px 60px #2e2e31;
+  font-size: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: -3px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 20px;
+}
+
+
+.auth-text:before,
+.auth-text:after {
+  content: '';
+  padding: .9em .4em;
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  top: 50%;
+  display: block;
+  border: 15px solid red;
+  transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  animation: 10s infinite alternate ease-in-out tipsy;
+}
+
+.auth-text:before {
+  border-color: #206a5d #206a5d rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  z-index: -1;
+}
+
+.auth-text:after {
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #206a5d #206a5d;
+  box-shadow: 25px 25px 25px rgba(46, 46, 49, .8);
+}
+
+@keyframes tipsy {
+  from {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  }
+}
 
 @keyframes App-logo-spin {
   from {
@@ -40,3 +85,16 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 600px) {
+  .auth-text {
+    display: none;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 960px) {
+  .auth-text {
+   font-size: 30px;
+  }
+}
+
+

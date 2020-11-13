@@ -88,7 +88,7 @@ export default function FormDialog(props) {
             fullWidth
             onChange={inputHandler}
           />
-          <Box component="div" className={classes.boxContainer} s>
+          <Box component="div" className={classes.boxContainer}>
             <TextField
               id="date"
               label="Date and time"

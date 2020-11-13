@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect } from "react";
 
 import Header from "../components/Header";
 import Banner from "../components/Banner";
-import ListContainer from "../components/ListContainer";
 import { AuthContext } from "../context/auth-context";
 import axios from "axios";
 import Alert from "../components/Alert";
@@ -65,7 +64,6 @@ function Todos() {
           <CircularProgress size={20} className={classes.loading} />
         </>
       )}
-      {/*  <ListContainer userTodos={userTodos} setCount={setCount} setAlert={setAlert}/>  */}
     </>
   );
 }

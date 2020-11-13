@@ -14,7 +14,6 @@ function DeleteConfirmation(props) {
   const {
     openDeleteDialog,
     setOpenDeleteDialog,
-    id,
     setCount,
     setAlert,
     selected,
@@ -23,34 +22,6 @@ function DeleteConfirmation(props) {
   
   const auth = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log(selected);
-
-  const deleteHandler = async (e) => {
-    try {
-      setIsLoading(true);
-      const responseData = await axios.delete(
-        `http://localhost:5000/todo/${id}`,
-        { headers: { Authorization: `Bearer ${auth.token}` } }
-      );
-      console.log(responseData);
-      setCount((prev) => prev + 1);
-      setIsLoading(false);
-      setAlert({
-        hasAlert: true,
-        alertMsg: "Success: Todo deleted!",
-        severity: "warning",
-      });
-      handleClose();
-    } catch (error) {
-      console.log(error.message);
-      setAlert({
-        hasAlert: true,
-        alertMsg: "Failure: Todo can not be deleted!",
-        severity: "warning",
-      });
-    }
-  };
 
   const deleteManyHandler = async (e) => {
     try {
