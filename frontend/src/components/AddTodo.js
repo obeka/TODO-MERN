@@ -30,7 +30,7 @@ export default function FormDialog(props) {
     label: "",
   });
   const { open, handleClose } = props;
-  const tags = ["Education", "Shopping", "Work", "Fun", "Concert"];
+  const tags = ["Urgent","Education", "Shopping", "Work", "Fun", "Concert", "Health", "Meeting", "Business", "Interview", "Course", "Family"];
   const submitHandler = async (e) => {
     e.preventDefault();
     try {

@@ -76,6 +76,7 @@ export default function Auth() {
             alertMsg: "Passwords must be matched.",
             severity: "error",
           });
+          setIsLoading(false);  
           return;
         }
         const response = await axios.post(

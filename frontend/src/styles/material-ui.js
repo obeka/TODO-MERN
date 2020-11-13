@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   headerIcon: {
     fontSize: "30px",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       fontSize: "20px",
     },
   },

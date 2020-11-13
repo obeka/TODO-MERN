@@ -25,7 +25,7 @@ export default function EditDialog(props) {
     date: loadedEditTodo.date,
     label: loadedEditTodo.label,
   });
-  const tags = ["Education", "Shopping", "Work", "Fun"];
+  const tags = ["Urgent","Education", "Shopping", "Work", "Fun", "Concert", "Health", "Meeting", "Business", "Interview", "Course", "Family"];
   const { open, handleClose } = props;
 
   const submitHandler = async (e) => {

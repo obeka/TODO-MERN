@@ -31,4 +31,4 @@ export default function Tags(props) {
     </div>
   );
 }
-const tags = ["Education", "Shopping", "Work", "Fun", "Concert"];
+const tags = ["Urgent","Education", "Shopping", "Work", "Fun", "Concert", "Health", "Meeting", "Business", "Interview", "Course", "Family"];
