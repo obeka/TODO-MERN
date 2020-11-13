@@ -13,7 +13,7 @@ import {useAuth} from "./hook/auth-hook"
 import "./App.css";
 function App() {
   const auth = useContext(AuthContext);
-  const {token, userId ,login, logout} = useAuth();
+  const {token, userId , userName, login, logout} = useAuth();
   let routes;
   if (token) {
     routes = (
@@ -43,6 +43,7 @@ function App() {
         value={{
           isLoggedIn: !!auth.token,
           token: token,
+          userName: userName,
           userId: userId,
           login: login,
           logout: logout

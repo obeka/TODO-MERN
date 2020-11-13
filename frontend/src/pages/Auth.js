@@ -45,12 +45,13 @@ export default function Auth() {
           "http://localhost:5000/user/login",
           formState
         );
-        //console.log(response);
+        console.log(response);
         if (response.status === 200) {
           auth.userId = response.data.userId;
           auth.token = response.data.token;
           auth.isLoggedIn = true;
-          auth.login(auth.token, auth.userId, auth.isLoggedIn);
+          auth.userName = response.data.username
+          auth.login(auth.token, auth.userId, auth.userName);
           history.push("/");
         } else {
           history.push("/auth");

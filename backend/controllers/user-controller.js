@@ -42,6 +42,7 @@ const login = async (req, res, next) => {
     userId: user.id,
     email: user.email,
     token: token,
+    username: user.username
   });
 };
 
@@ -91,6 +92,7 @@ const signup = async (req, res, next) => {
     userId: createdUser.id,
     email: createdUser.email,
     token: token,
+    username: createdUser.username
   });
 };
 

@@ -37,16 +37,41 @@ const useStyles = makeStyles((theme) => ({
   header: {
     display: "flex",
     justifyContent: "space-evenly",
-    backgroundColor: "#839b97"
+    backgroundColor: "#f4f4f4",
+    paddingTop: 20,
+    paddingBottom: 20
   },
-  /* headerContainer: {
-
-  } */
+  logo : {
+    width: 60
+  },
+  headerText: {
+    color: "#335d2d",
+    fontSize: "30px",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "20px",
+    },
+  },
+  headerIcon: {
+    fontSize: "30px",
+    [theme.breakpoints.down('sm')]: {
+      fontSize: "20px",
+    },
+  },
 
   //Banner
   banner: {
-    padding: 40,
-    backgroundColor: "lightgrey",
+    padding: 15,
+    backgroundColor: "#206a5d",
+    color: "#eff48e",
+    [theme.breakpoints.down('xs')]: {
+     flexDirection: "column"
+    },
+  },
+  bannerButton : {
+    marginTop : 10,
+  },
+  bannerIcon : {
+    marginLeft : 5,
   },
 
   //AddTodo and Edit Todo Components
