@@ -14,8 +14,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //Route Middleware
-app.use("/user", userRoutes)
-app.use("/todo", todoRoutes)
+app.use("/api/user", userRoutes)
+app.use("/api/todo", todoRoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello");
@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 mongoose
   .connect(
-    `mongodb+srv://omerbkk06:19901992@cluster0.f6uwe.mongodb.net/todo?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.f6uwe.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

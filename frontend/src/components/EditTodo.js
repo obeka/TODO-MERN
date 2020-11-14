@@ -33,7 +33,7 @@ export default function EditDialog(props) {
     try {
       setIsLoading(true)
       const response = await axios.patch(
-        `http://localhost:5000/todo/${id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/todo/${id}`,
         formState,
         { headers: { Authorization: `Bearer ${auth.token}` } }
       );
@@ -80,7 +80,7 @@ export default function EditDialog(props) {
             defaultValue={loadedEditTodo.todoName}
             onChange={inputHandler}
           />
-          <Box component="div" className={classes.boxContainer} s>
+          <Box component="div" className={classes.boxContainer}>
             <TextField
               id="date"
               label="Date and time"

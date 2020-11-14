@@ -28,7 +28,7 @@ function Todos() {
       try {
         setIsLoading(true);
         const responseData = await axios.get(
-          `http://localhost:5000/todo/user/${auth.userId}`
+          `${process.env.REACT_APP_BACKEND_URL}/todo/user/${auth.userId}`
         );
         setUserTodos(responseData.data.todo);
         setIsLoading(false);
@@ -44,13 +44,18 @@ function Todos() {
       <Header />
       <Banner setCount={setCount} />
       <div className={classes.tableContainer}>
-        {userTodos.length === 0 && (
+        {isLoading && (
+          <>
+            <CircularProgress size={20} className={classes.loading} />
+          </>
+        )}
+        {!isLoading && userTodos.length === 0 && (
           <Typography style={{ marginBottom: 20 }} variant="h6" component="h6">
             You don't have any todos.
           </Typography>
         )}
 
-        {userTodos && (
+        {!isLoading && userTodos && (
           <TodoTable
             userTodos={userTodos}
             setCount={setCount}
@@ -58,11 +63,6 @@ function Todos() {
           />
         )}
       </div>
-      {isLoading && (
-        <>
-          <CircularProgress size={20} className={classes.loading} />
-        </>
-      )}
     </>
   );
 }

@@ -26,8 +26,8 @@ function DeleteConfirmation(props) {
   const deleteManyHandler = async (e) => {
     try {
       setIsLoading(true);
-      const responseData = await axios.delete(
-        `http://localhost:5000/todo/many`,
+      await axios.delete(
+        `${process.env.REACT_APP_BACKEND_URL}/todo/many`,
         { headers: { Authorization: `Bearer ${auth.token}` }, data: {selected, userId: auth.userId} }
       );
       setCount((prev) => prev + 1);

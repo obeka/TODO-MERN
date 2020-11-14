@@ -13,20 +13,14 @@ import useStyles from "../styles/material-ui";
 import DeleteConfirmation from "./DeleteConfirmation";
 import EditTodo from "./EditTodo";
 
-import axios from "axios"
+import axios from "axios";
 
 function TableToolBar(props) {
   const classes = useStyles();
-  const {
-    numSelected,
-    setCount,
-    selected,
-    setAlert,
-    setSelected,
-  } = props;
+  const { numSelected, setCount, selected, setAlert, setSelected } = props;
   const [open, setOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [loadedEditTodo, setLoadedEditTodo] = useState(null)
+  const [loadedEditTodo, setLoadedEditTodo] = useState(null);
 
   TableToolBar.propTypes = {
     numSelected: PropTypes.number.isRequired,
@@ -34,7 +28,9 @@ function TableToolBar(props) {
 
   const editHandler = async (e) => {
     setOpen(true);
-    const response = await axios.get(`http://localhost:5000/todo/${selected[0]}`);
+    const response = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/todo/${selected[0]}`
+    );
     setLoadedEditTodo(response.data.todo);
   };
   const handleClose = () => {
@@ -70,11 +66,8 @@ function TableToolBar(props) {
         {numSelected === 1 ? (
           <>
             <Tooltip title="Edit">
-              <IconButton aria-label="edit">
-                <EditIcon
-                  open={open}
-                  onClick={editHandler}
-                />
+              <IconButton aria-label="edit" onClick={editHandler}>
+                <EditIcon open={open} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Delete">
@@ -116,16 +109,16 @@ function TableToolBar(props) {
         />
       )}
       {loadedEditTodo && (
-          <EditTodo
-            id={selected[0]}
-            open={open}
-            loadedEditTodo={loadedEditTodo}
-            onClick={editHandler}
-            handleClose={handleClose}
-            setCount={setCount}
-            setAlert={setAlert}
-          />
-        )}
+        <EditTodo
+          id={selected[0]}
+          open={open}
+          loadedEditTodo={loadedEditTodo}
+          onClick={editHandler}
+          handleClose={handleClose}
+          setCount={setCount}
+          setAlert={setAlert}
+        />
+      )}
     </>
   );
 }

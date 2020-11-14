@@ -36,7 +36,7 @@ export default function FormDialog(props) {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        "http://localhost:5000/todo/new",
+        `${process.env.REACT_APP_BACKEND_URL}/todo/new`,
         formState,
         { headers: { Authorization: `Bearer ${auth.token}` } }
       );

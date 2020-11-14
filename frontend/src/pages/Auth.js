@@ -43,7 +43,7 @@ export default function Auth() {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:5000/user/login",
+          `${process.env.REACT_APP_BACKEND_URL}/user/login`,
           formState
         );
         if (response.status === 200) {
@@ -62,7 +62,7 @@ export default function Auth() {
         setIsLoading(false);
         setAlert({
           hasAlert: true,
-          alertMsg: error.response.data,
+          alertMsg: "Network Error.",
           severity: "error",
         });
       }
@@ -80,7 +80,7 @@ export default function Auth() {
           return;
         }
         const response = await axios.post(
-          "http://localhost:5000/user/signup",
+          `${process.env.REACT_APP_BACKEND_URL}/user/signup`,
           formState
         );
         if (response.status === 201) {

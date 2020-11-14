@@ -21,19 +21,23 @@ const login = async (req, res, next) => {
   try {
     isValidPassword = await bcrypt.compare(password, user.password);
   } catch (err) {
-    res.status(500).send("Could not log you in, please check your credentials and try again.");
+    res
+      .status(500)
+      .send(
+        "Could not log you in, please check your credentials and try again."
+      );
   }
   if (!isValidPassword) {
-    res.status(401).send("Invalid password, please check your password and try again.");
+    res
+      .status(401)
+      .send("Invalid password, please check your password and try again.");
   }
 
   let token;
   try {
-    token = jwt.sign(
-      { userId: user.id, email: user.email },
-      "todosaresecret",
-      { expiresIn: "1h" }
-    );
+    token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT_KEY, {
+      expiresIn: "1h",
+    });
   } catch (err) {
     res.status(500).send("Signing up failed, please try again later.");
   }
@@ -42,7 +46,7 @@ const login = async (req, res, next) => {
     userId: user.id,
     email: user.email,
     token: token,
-    username: user.username
+    username: user.username,
   });
 };
 
@@ -82,7 +86,7 @@ const signup = async (req, res, next) => {
   try {
     token = jwt.sign(
       { userId: createdUser.id, email: createdUser.email },
-      "todosaresecret",
+      process.env.JWT_KEY,
       { expiresIn: "1h" }
     );
   } catch (err) {
@@ -92,7 +96,7 @@ const signup = async (req, res, next) => {
     userId: createdUser.id,
     email: createdUser.email,
     token: token,
-    username: createdUser.username
+    username: createdUser.username,
   });
 };
 
