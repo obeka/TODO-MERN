@@ -17,8 +17,8 @@ import SearchBox from "./SearchBox";
 
 import moment from "moment";
 
-function createData(todoName, label, date, id) {
-  return { todoName, label, date, id };
+function createData(todoName, label, date, id, when) {
+  return { todoName, label, date, id, when };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -53,12 +53,12 @@ export default function EnhancedTable(props) {
   let rows;
   if (selectedTags.length === 0) {
     rows = userTodos.map((todo) =>
-      createData(todo.todoName, todo.label, todo.date, todo.id)
+      createData(todo.todoName, todo.label, todo.date, todo.id, todo.date)
     );
   } else {
     rows = userTodos
       .filter((todo) => selectedTags.includes(todo.label))
-      .map((todo) => createData(todo.todoName, todo.label, todo.date, todo.id));
+      .map((todo) => createData(todo.todoName, todo.label, todo.date, todo.id,todo.date));
   }
 
   const classes = useStyles();

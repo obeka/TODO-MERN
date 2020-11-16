@@ -8,7 +8,7 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableHead from "@material-ui/core/TableHead";
 const headCells = [
   { id: "todoName", numeric: false, disablePadding: false, label: "Todo Name" },
-  { id: "label", numeric: true, disablePadding: true, label: "Label" },
+  { id: "label", numeric: true, disablePadding: true, label: "Tag" },
   { id: "date", numeric: true, disablePadding: false, label: "Date" },
   { id: "when", numeric: true, disablePadding: false, label: "When" },
 ];
@@ -45,7 +45,7 @@ function TableHeadBar(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ "aria-label": "select all desserts" }}
+            inputProps={{ "aria-label": "select all todos" }}
           />
         </TableCell>
         {headCells.map((headCell) => (

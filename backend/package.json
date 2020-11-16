@@ -4,7 +4,8 @@
   "description": "todo-backend",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
   "author": "o.be.ka",
   "license": "ISC",
