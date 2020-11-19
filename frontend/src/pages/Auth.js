@@ -1,4 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,9 +19,13 @@ import { useHistory } from "react-router-dom";
 import Alert from "../components/Alert";
 import { AuthContext } from "../context/auth-context";
 
+import Icon from "@mdi/react";
+import { mdiGooglePlus   } from "@mdi/js";
+
 export default function Auth() {
   const classes = useStyles();
   const history = useHistory();
+  const { userId, token, username } = useParams();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +38,24 @@ export default function Auth() {
     password: "",
     email: "",
   });
+
+  useEffect(() => {
+    if (token) {
+      auth.userId = userId;
+      auth.token = token;
+      auth.username = username;
+      auth.login(token, userId, username);
+      history.push("/");
+    }
+  });
+
+  /* if(token) {
+       auth.userId = userId;
+      auth.token = token;
+      auth.username = username; 
+      auth.login(token, userId, username);
+      history.push("/")
+    }  */
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -76,7 +100,7 @@ export default function Auth() {
             alertMsg: "Passwords must be matched.",
             severity: "error",
           });
-          setIsLoading(false);  
+          setIsLoading(false);
           return;
         }
         const response = await axios.post(
@@ -104,6 +128,7 @@ export default function Auth() {
       }
     }
   };
+
   return (
     <Grid container component="main" className={classes.authContainer}>
       <CssBaseline />
@@ -200,7 +225,7 @@ export default function Auth() {
                 className={classes.authSubmit}
                 disabled={!(formState.email && formState.password)}
               >
-               <span style={{color: "white"}}>SIGN IN</span>
+                <span style={{ color: "white" }}>SIGN IN</span>
               </Button>
             ) : (
               <Button
@@ -217,7 +242,7 @@ export default function Auth() {
                   )
                 }
               >
-               <span style={{color: "white"}}>SIGN UP</span>
+                <span style={{ color: "white" }}>SIGN UP</span>
               </Button>
             )}
 
@@ -246,6 +271,20 @@ export default function Auth() {
               </Typography>
             </Box>
           </form>
+          <Button
+            href={`${process.env.REACT_APP_BACKEND_URL}/user/google`}
+            variant="contained"
+            className={classes.authSubmit}
+            //onClick={handleGoogle}
+          >
+            <Icon
+              path={mdiGooglePlus }
+              title="Google Plus+"
+              size={2} 
+              color="white"
+             
+            />
+          </Button>
         </div>
       </Grid>
     </Grid>

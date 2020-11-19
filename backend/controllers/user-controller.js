@@ -100,5 +100,27 @@ const signup = async (req, res, next) => {
   });
 };
 
+const google = async (req, res) => {
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: req.user._id, email: req.user.email },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
+  } catch (err) {
+    res.status(500).send("Signing up failed, please try again later.");
+  }
+    res.status(200)/* .json({
+    userId: req.user._id,
+    email: req.user.email,
+    token: token,
+    username: req.user.username,
+  }) */.redirect("http://localhost:3000/auth/" + req.user._id + "/" + token + "/" + req.user.username )
+}
+
 exports.login = login;
 exports.signup = signup;
+exports.google = google;

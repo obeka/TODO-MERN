@@ -3,7 +3,9 @@
         "DB_USER":"omerbkk06",
         "DB_PASSWORD":"19901992",
         "DB_NAME":"todo",
-        "JWT_KEY": "todosaresecret"
+        "JWT_KEY": "todosaresecret",
+        "GOOGLE_CLIENT_ID": "622104439177-rpbkm21479bjal4dfp047vp96ikqafrh.apps.googleusercontent.com",
+        "GOOGLE_CLIENT_SECRET": "onePge_dkvXQl-q_vVX1TBSY"
 
     }
 }

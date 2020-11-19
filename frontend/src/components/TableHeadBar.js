@@ -8,7 +8,7 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableHead from "@material-ui/core/TableHead";
 const headCells = [
   { id: "todoName", numeric: false, disablePadding: false, label: "Todo Name" },
-  { id: "label", numeric: true, disablePadding: true, label: "Tag" },
+  { id: "label", numeric: true, disablePadding: true, label: "Label" },
   { id: "date", numeric: true, disablePadding: false, label: "Date" },
   { id: "when", numeric: true, disablePadding: false, label: "When" },
 ];
