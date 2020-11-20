@@ -88,7 +88,6 @@ export default function EnhancedTable(props) {
   const [dense2, setDense2] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [showPastTodos, setShowPastTodos] = useState(false);
-  console.log(showPastTodos);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -153,8 +152,8 @@ export default function EnhancedTable(props) {
       <Box component="div" className={classes.chipContainer}>
         <div>
           <Chip
-            style={{ marginRight: 10, marginTop: 10 }}
             className={classes.withinOneDay}
+            style={{ marginRight: 10, marginTop: 10 }}
             label="Less than 24 hour"
           />
           <Chip

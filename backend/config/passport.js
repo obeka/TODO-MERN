@@ -1,6 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
-const GitHubStrategy = require("passport-github2")
+const GitHubStrategy = require("passport-github2");
 const User = require("../models/user-model.js");
 
 passport.serializeUser((user, done) => {
@@ -23,15 +23,11 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback func
-      console.log("pass callback");
-      
       try {
         const user = await User.findOne({ email: profile.emails[0].value });
         if (user) {
           done(null, user);
-          console.log("User is alreadt extis");
         } else {
-          console.log("user NOT");
           const newUser = new User({
             username: profile.displayName,
             signupType: "google",
@@ -41,18 +37,9 @@ passport.use(
           try {
             await newUser.save();
             done(null, newUser);
-          } catch (error) {
-            console.log(
-              "Signing up failed with google, please try again later."
-            );
-          }
+          } catch (error) {}
         }
-      } catch (error) {
-        console.log(error);
-      }
-      /* console.log(profile.displayName);
-      console.log(profile.emails[0].value);
-      console.log(profile.provider); */
+      } catch (error) {}
     }
   )
 );
@@ -66,15 +53,11 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback func
-      console.log("pass callback");
-      console.log(profile);
       try {
         const user = await User.findOne({ signupId: profile.id });
         if (user) {
           done(null, user);
-          console.log("User is alreadt extis");
         } else {
-          console.log("user NOT");
           const newUser = new User({
             username: profile.username,
             signupType: "github",
@@ -85,15 +68,9 @@ passport.use(
           try {
             await newUser.save();
             done(null, newUser);
-          } catch (error) {
-            console.log(
-              "Signing up failed with google, please try again later."
-            );
-          }
+          } catch (error) {}
         }
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     }
   )
 );

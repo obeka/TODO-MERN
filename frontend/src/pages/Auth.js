@@ -79,7 +79,7 @@ export default function Auth() {
         setIsLoading(false);
         setAlert({
           hasAlert: true,
-          alertMsg: "Network Error.",
+          alertMsg: error.response.data,
           severity: "error",
         });
       }

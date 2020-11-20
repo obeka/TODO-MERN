@@ -31,6 +31,7 @@ export default function FormDialog(props) {
   });
   const { open, handleClose } = props;
   const tags = ["Urgent","Education", "Shopping", "Work", "Fun", "Concert", "Health", "Meeting", "Business", "Interview", "Course", "Family"];
+  const sortedTags = tags.sort();
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -102,7 +103,7 @@ export default function FormDialog(props) {
             />
             <Autocomplete
               id="label"
-              options={tags}
+              options={sortedTags}
               renderInput={(params) => (
                 <TextField {...params} label="Tag" variant="outlined" />
               )}

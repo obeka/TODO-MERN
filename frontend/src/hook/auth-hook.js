@@ -18,6 +18,7 @@ export const useAuth = () => {
   const logout = () => {
     setToken(null);
     setUserId(null);
+    localStorage.removeItem("todoUserData");
   };
 
   useEffect(() => {

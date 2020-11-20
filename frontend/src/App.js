@@ -15,7 +15,6 @@ function App() {
   const auth = useContext(AuthContext);
   const { token, userId, userName, login, logout } = useAuth();
 
-  //console.log(localStorage.getItem("todoUserData"));
   let routes;
   if (token) {
     routes = (

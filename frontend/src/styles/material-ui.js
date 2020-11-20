@@ -190,7 +190,7 @@ const useStyles = makeStyles((theme) => ({
 
   //Relative time background colors of todos
   withinOneDay: {
-    backgroundColor: "RGBA(162,10,10,0.62)",
+    backgroundColor: "RGBA(162,10,10,0.62) !important",
     animation: "$fade 2000ms infinite",
   },
   "@keyframes fade": {
@@ -199,16 +199,16 @@ const useStyles = makeStyles((theme) => ({
     to: { opacity: 1 },
   },
   withinOneWeek: {
-    backgroundColor: "#709fb0",
+    backgroundColor: "#709fb0 !important",
   },
   moreThanOneWeek: {
-    backgroundColor: "RGBA(89,136,107,0.69)",
+    backgroundColor: "RGBA(89,136,107,0.69) !important",
   },
   past: {
-    backgroundColor: "#e3dfc8",
+    backgroundColor: "#e3dfc8 !important",
   },
   hidePast:{
-    display: "none"
+    display: "none !important"
   },
 
   //Chips 
