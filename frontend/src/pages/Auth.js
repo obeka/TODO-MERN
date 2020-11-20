@@ -20,7 +20,8 @@ import Alert from "../components/Alert";
 import { AuthContext } from "../context/auth-context";
 
 import Icon from "@mdi/react";
-import { mdiGooglePlus   } from "@mdi/js";
+import { mdiGooglePlus } from "@mdi/js";
+import { mdiGithub } from "@mdi/js";
 
 export default function Auth() {
   const classes = useStyles();
@@ -48,14 +49,6 @@ export default function Auth() {
       history.push("/");
     }
   });
-
-  /* if(token) {
-       auth.userId = userId;
-      auth.token = token;
-      auth.username = username; 
-      auth.login(token, userId, username);
-      history.push("/")
-    }  */
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -260,31 +253,45 @@ export default function Auth() {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-              <Typography variant="body2" color="textSecondary" align="center">
-                {"Copyright © "}
-                <Link color="inherit" href="https://material-ui.com/">
-                  TTooDDoo
-                </Link>{" "}
-                {new Date().getFullYear()}
-                {"."}
-              </Typography>
+            <Box>
+              <Button
+                href={`${process.env.REACT_APP_BACKEND_URL}/user/google`}
+                variant="contained"
+                className={classes.socialIcon}
+                //onClick={handleGoogle}
+              >
+                <Icon
+                  path={mdiGooglePlus}
+                  title="Google Plus+"
+                  size={1}
+                  color="white"
+                />
+              </Button>
+              <Button
+                href={`${process.env.REACT_APP_BACKEND_URL}/user/github`}
+                variant="contained"
+                className={classes.socialIcon}
+                //onClick={handleGoogle}
+              >
+                <Icon
+                  path={mdiGithub}
+                  title="Google Plus+"
+                  size={1}
+                  color="white"
+                />
+              </Button>
             </Box>
           </form>
-          <Button
-            href={`${process.env.REACT_APP_BACKEND_URL}/user/google`}
-            variant="contained"
-            className={classes.authSubmit}
-            //onClick={handleGoogle}
-          >
-            <Icon
-              path={mdiGooglePlus }
-              title="Google Plus+"
-              size={2} 
-              color="white"
-             
-            />
-          </Button>
+          <Box mt={5}>
+            <Typography variant="body2" color="textSecondary" align="center">
+              {"Copyright © "}
+              
+                TV2Z
+              
+              {new Date().getFullYear()}
+              {"."}
+            </Typography>
+          </Box>
         </div>
       </Grid>
     </Grid>

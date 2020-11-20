@@ -33,6 +33,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: "#206a5d",
   },
+  socialIcon: {
+    margin: theme.spacing(3, 0, 2), 
+    backgroundColor: "#206a5d",
+    width: 30,
+    marginRight:10
+  },
+  footer: {
+    position: "absolute",
+    bottom: 20
+  },
 
   //Header
   header: {
