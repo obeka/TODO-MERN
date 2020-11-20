@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -8,15 +8,18 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import useStyles from "../styles/material-ui";
 
 import DeleteConfirmation from "./DeleteConfirmation";
 import EditTodo from "./EditTodo";
+import { AuthContext } from "../context/auth-context";
 
 import axios from "axios";
 
 function TableToolBar(props) {
   const classes = useStyles();
+  const auth = useContext(AuthContext);
   const { numSelected, setCount, selected, setAlert, setSelected } = props;
   const [open, setOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -33,6 +36,64 @@ function TableToolBar(props) {
     );
     setLoadedEditTodo(response.data.todo);
   };
+
+  const doneHandler = async (e) => {
+    let response;
+    try {
+      response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/todo/${selected[0]}`
+      );
+    } catch (error) {
+      setAlert({
+        hasAlert: true,
+        alertMsg: "Failure: Marking failed.",
+        severity: "warning",
+      });
+    }
+
+    if (!response.data.todo.isDone) {
+      try {
+        await axios.patch(
+          `${process.env.REACT_APP_BACKEND_URL}/todo/${selected[0]}`,
+          { isDone: true },
+          { headers: { Authorization: `Bearer ${auth.token}` } }
+        );
+        setCount((prev) => prev + 1);
+        setAlert({
+          hasAlert: true,
+          alertMsg: "Marked as Done",
+          severity: "success",
+        });
+      } catch (error) {
+        setAlert({
+          hasAlert: true,
+          alertMsg: "Failure: Marking failed.",
+          severity: "warning",
+        });
+      }
+    } else {
+      try {
+        await axios.patch(
+          `${process.env.REACT_APP_BACKEND_URL}/todo/${selected[0]}`,
+          { isDone: false },
+          { headers: { Authorization: `Bearer ${auth.token}` } }
+        );
+        setCount((prev) => prev + 1);
+        setAlert({
+          hasAlert: true,
+          alertMsg: "Marked as Undone",
+          severity: "success",
+        });
+      } catch (error) {
+        setAlert({
+          hasAlert: true,
+          alertMsg: "Failure: Marking failed.",
+          severity: "warning",
+        });
+      }
+    }
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -65,6 +126,11 @@ function TableToolBar(props) {
         )}
         {numSelected === 1 ? (
           <>
+            <Tooltip title="Mark as Done">
+              <IconButton aria-label="done" onClick={doneHandler}>
+                <CheckCircleIcon />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Edit">
               <IconButton aria-label="edit" onClick={editHandler}>
                 <EditIcon open={open} />

@@ -10,6 +10,8 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import useStyles from "../styles/material-ui";
+import Box from "@material-ui/core/Box";
+import Chip from "@material-ui/core/Chip";
 
 import TableHeadBar from "./TableHeadBar";
 import TableToolBar from "./TableToolBar";
@@ -17,8 +19,8 @@ import SearchBox from "./SearchBox";
 
 import moment from "moment";
 
-function createData(todoName, label, date, id, when) {
-  return { todoName, label, date, id, when };
+function createData(todoName, label, date, id, when, isDone) {
+  return { todoName, label, date, id, when, isDone };
 }
 
 function descendingComparator(a, b, orderBy) {
@@ -53,21 +55,40 @@ export default function EnhancedTable(props) {
   let rows;
   if (selectedTags.length === 0) {
     rows = userTodos.map((todo) =>
-      createData(todo.todoName, todo.label, todo.date, todo.id, todo.date)
+      createData(
+        todo.todoName,
+        todo.label,
+        todo.date,
+        todo.id,
+        todo.date,
+        todo.isDone
+      )
     );
   } else {
     rows = userTodos
       .filter((todo) => selectedTags.includes(todo.label))
-      .map((todo) => createData(todo.todoName, todo.label, todo.date, todo.id,todo.date));
+      .map((todo) =>
+        createData(
+          todo.todoName,
+          todo.label,
+          todo.date,
+          todo.id,
+          todo.date,
+          todo.isDone
+        )
+      );
   }
 
   const classes = useStyles();
   const [order, setOrder] = useState("asc");
-  const [orderBy, setOrderBy] = useState("label");
+  const [orderBy, setOrderBy] = useState("date");
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
+  const [dense2, setDense2] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [showPastTodos, setShowPastTodos] = useState(false);
+  console.log(showPastTodos);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -116,6 +137,11 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   };
 
+  const handlePastTodos = (e) => {
+    setDense2(e.target.checked);
+    setShowPastTodos((p) => !p);
+  };
+
   const isSelected = (todoName) => selected.indexOf(todoName) !== -1;
 
   const emptyRows =
@@ -124,6 +150,39 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.todoContainer}>
       <SearchBox setSelectedTags={setSelectedTags} />
+      <Box component="div" className={classes.chipContainer}>
+        <div>
+          <Chip
+            style={{ marginRight: 10, marginTop: 10 }}
+            className={classes.withinOneDay}
+            label="Less than 24 hour"
+          />
+          <Chip
+            style={{ marginRight: 10, marginTop: 10 }}
+            className={classes.withinOneWeek}
+            label="Within 1 Week"
+          />
+        </div>
+        <div className={classes.mobileChips}>
+          <Chip
+            style={{ marginRight: 10, marginTop: 10 }}
+            className={classes.moreThanOneWeek}
+            label="More than 1 Week"
+          />
+          <Chip
+            style={{ marginRight: 10, marginTop: 10 }}
+            className={classes.past}
+            label="Past Todos"
+          />
+        </div>
+        <div>
+          <FormControlLabel
+          style={{marginTop:5}}
+            control={<Switch checked={dense2} onChange={handlePastTodos} color="primary" />}
+            label="Past todos"
+          />
+        </div>
+      </Box>
       <Paper className={classes.todoPaper}>
         <TableToolBar
           numSelected={selected.length}
@@ -133,7 +192,6 @@ export default function EnhancedTable(props) {
           setSelected={setSelected}
         />
         <TableContainer>
-       
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
@@ -155,7 +213,9 @@ export default function EnhancedTable(props) {
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
+                  const a = moment(row.date); // todo date
+                  const b = moment(); // now
+                  const diff = a.diff(b);
                   return (
                     <TableRow
                       hover
@@ -165,6 +225,17 @@ export default function EnhancedTable(props) {
                       tabIndex={-1}
                       key={row.todoName}
                       selected={isItemSelected}
+                      className={`${
+                        diff <= 0
+                          ? classes.past
+                          : diff < 86400000
+                          ? classes.withinOneDay
+                          : diff < 604800000
+                          ? classes.withinOneWeek
+                          : classes.moreThanOneWeek
+                      } ${row.isDone && classes.done} ${
+                        diff < 0 && showPastTodos && classes.hidePast
+                      }`}
                     >
                       <TableCell padding="checkbox">
                         <Checkbox

@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#206a5d",
   },
   socialIcon: {
-    margin: theme.spacing(3, 0, 2), 
+    margin: theme.spacing(3, 0, 2),
     backgroundColor: "#206a5d",
     width: 30,
-    marginRight:10
+    marginRight: 10,
   },
   footer: {
     position: "absolute",
-    bottom: 20
+    bottom: 20,
   },
 
   //Header
@@ -111,8 +111,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#206a5d",
   },
 
-  buttonss : {
-    backgroundColor: "#206a5d"
+  buttonss: {
+    backgroundColor: "#206a5d",
   },
 
   //Alert
@@ -128,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     margin: "0 auto 30px",
     [theme.breakpoints.down("xs")]: {
-      width: 340,
+      width: 280,
     },
   },
 
@@ -181,6 +181,51 @@ const useStyles = makeStyles((theme) => ({
   toolBarTitle: {
     flex: "1 1 100%",
   },
+
+  //Done
+  done: {
+    opacity: 0.8,
+    textDecoration: "line-through",
+  },
+
+  //Relative time background colors of todos
+  withinOneDay: {
+    backgroundColor: "RGBA(162,10,10,0.62)",
+    animation: "$fade 2000ms infinite",
+  },
+  "@keyframes fade": {
+    from: { opacity: 1 },
+    "50%": { opacity: 0.8 },
+    to: { opacity: 1 },
+  },
+  withinOneWeek: {
+    backgroundColor: "#709fb0",
+  },
+  moreThanOneWeek: {
+    backgroundColor: "RGBA(89,136,107,0.69)",
+  },
+  past: {
+    backgroundColor: "#e3dfc8",
+  },
+  hidePast:{
+    display: "none"
+  },
+
+  //Chips 
+  chipContainer: {
+    display: "flex",
+    marginBottom: 20,
+    marginTop: -10,
+    justifyContent: "center",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection:"column"
+    },
+  },
+ /*  mobileChips: {
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 10,
+    },
+  } */
 }));
 
 export default useStyles;

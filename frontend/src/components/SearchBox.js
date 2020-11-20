@@ -6,8 +6,8 @@ import useStyles from "../styles/material-ui";
 
 export default function Tags(props) {
   const classes = useStyles();
-  const {setSelectedTags} = props
-  const tagHandler = (event,value) => {
+  const { setSelectedTags } = props;
+  const tagHandler = (event, value) => {
     setSelectedTags(value);
   };
   return (
@@ -15,7 +15,7 @@ export default function Tags(props) {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={tags}
+        options={sortedTags}
         getOptionLabel={(option) => option}
         filterSelectedOptions
         renderInput={(params) => (
@@ -26,9 +26,23 @@ export default function Tags(props) {
             placeholder="Add a tag"
           />
         )}
-        onChange={(event,value) => tagHandler(event,value)}
+        onChange={(event, value) => tagHandler(event, value)}
       />
     </div>
   );
 }
-const tags = ["Urgent","Education", "Shopping", "Work", "Fun", "Concert", "Health", "Meeting", "Business", "Interview", "Course", "Family"];
+const tags = [
+  "Education",
+  "Shopping",
+  "Work",
+  "Fun",
+  "Concert",
+  "Health",
+  "Meeting",
+  "Business",
+  "Interview",
+  "Course",
+  "Family",
+  "Urgent",
+];
+const sortedTags = tags.sort();
