@@ -1,4 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,9 +19,14 @@ import { useHistory } from "react-router-dom";
 import Alert from "../components/Alert";
 import { AuthContext } from "../context/auth-context";
 
+import Icon from "@mdi/react";
+import { mdiGooglePlus } from "@mdi/js";
+import { mdiGithub } from "@mdi/js";
+
 export default function Auth() {
   const classes = useStyles();
   const history = useHistory();
+  const { userId, token, username } = useParams();
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +38,16 @@ export default function Auth() {
   const { formState, inputHandler } = useForm({
     password: "",
     email: "",
+  });
+
+  useEffect(() => {
+    if (token) {
+      auth.userId = userId;
+      auth.token = token;
+      auth.username = username;
+      auth.login(token, userId, username);
+      history.push("/");
+    }
   });
 
   const switchModeHandler = () => {
@@ -76,7 +93,7 @@ export default function Auth() {
             alertMsg: "Passwords must be matched.",
             severity: "error",
           });
-          setIsLoading(false);  
+          setIsLoading(false);
           return;
         }
         const response = await axios.post(
@@ -104,6 +121,7 @@ export default function Auth() {
       }
     }
   };
+
   return (
     <Grid container component="main" className={classes.authContainer}>
       <CssBaseline />
@@ -200,7 +218,7 @@ export default function Auth() {
                 className={classes.authSubmit}
                 disabled={!(formState.email && formState.password)}
               >
-               <span style={{color: "white"}}>SIGN IN</span>
+                <span style={{ color: "white" }}>SIGN IN</span>
               </Button>
             ) : (
               <Button
@@ -217,7 +235,7 @@ export default function Auth() {
                   )
                 }
               >
-               <span style={{color: "white"}}>SIGN UP</span>
+                <span style={{ color: "white" }}>SIGN UP</span>
               </Button>
             )}
 
@@ -235,17 +253,45 @@ export default function Auth() {
                 </Link>
               </Grid>
             </Grid>
-            <Box mt={5}>
-              <Typography variant="body2" color="textSecondary" align="center">
-                {"Copyright © "}
-                <Link color="inherit" href="https://material-ui.com/">
-                  TTooDDoo
-                </Link>{" "}
-                {new Date().getFullYear()}
-                {"."}
-              </Typography>
+            <Box>
+              <Button
+                href={`${process.env.REACT_APP_BACKEND_URL}/user/google`}
+                variant="contained"
+                className={classes.socialIcon}
+                //onClick={handleGoogle}
+              >
+                <Icon
+                  path={mdiGooglePlus}
+                  title="Google Plus+"
+                  size={1}
+                  color="white"
+                />
+              </Button>
+              <Button
+                href={`${process.env.REACT_APP_BACKEND_URL}/user/github`}
+                variant="contained"
+                className={classes.socialIcon}
+                //onClick={handleGoogle}
+              >
+                <Icon
+                  path={mdiGithub}
+                  title="Google Plus+"
+                  size={1}
+                  color="white"
+                />
+              </Button>
             </Box>
           </form>
+          <Box mt={5}>
+            <Typography variant="body2" color="textSecondary" align="center">
+              {"Copyright © "}
+              
+                TV2Z
+              
+              {new Date().getFullYear()}
+              {"."}
+            </Typography>
+          </Box>
         </div>
       </Grid>
     </Grid>

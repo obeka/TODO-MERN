@@ -3,7 +3,11 @@
         "DB_USER":"omerbkk06",
         "DB_PASSWORD":"19901992",
         "DB_NAME":"todo",
-        "JWT_KEY": "todosaresecret"
+        "JWT_KEY": "todosaresecret",
+        "GOOGLE_CLIENT_ID": "622104439177-rpbkm21479bjal4dfp047vp96ikqafrh.apps.googleusercontent.com",
+        "GOOGLE_CLIENT_SECRET": "onePge_dkvXQl-q_vVX1TBSY",
+        "GITHUB_CLIENT_ID": "6ef509d2ab1320a7ab00",
+        "GITHUB_CLIENT_SECRET": "b4e564fd5b37858fbc7934326fe241a57e58eb30"
 
     }
 }

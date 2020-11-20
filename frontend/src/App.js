@@ -7,13 +7,15 @@ import {
 } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Todos from "./pages/Todos";
+import { useAuth } from "./hook/auth-hook";
 import { AuthContext } from "./context/auth-context";
-import {useAuth} from "./hook/auth-hook"
 
 import "./App.css";
 function App() {
   const auth = useContext(AuthContext);
-  const {token, userId , userName, login, logout} = useAuth();
+  const { token, userId, userName, login, logout } = useAuth();
+
+  //console.log(localStorage.getItem("todoUserData"));
   let routes;
   if (token) {
     routes = (
@@ -33,6 +35,9 @@ function App() {
         <Route path="/auth" exact>
           <Auth />
         </Route>
+        <Route path="/auth/:userId/:token/:username" exact>
+          <Auth />
+        </Route>
         <Redirect to="/auth" />
       </Switch>
     );
@@ -46,7 +51,7 @@ function App() {
           userName: userName,
           userId: userId,
           login: login,
-          logout: logout
+          logout: logout,
         }}
       >
         <Router>{routes}</Router>

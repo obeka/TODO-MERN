@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-//import { makeStyles } from "@material-ui/core/styles";
-
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import { AuthContext } from "../context/auth-context";
@@ -23,7 +21,7 @@ function Todos() {
     severity: "",
   });
 
-  useEffect(() => {
+   useEffect(() => {
     const fetchUserTodo = async () => {
       try {
         setIsLoading(true);

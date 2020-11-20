@@ -1,8 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 const cors = require("cors");
+const passportSetup = require("./config/passport")
 const userRoutes = require("./routes/user-routes")
 const todoRoutes = require("./routes/todo-routes")
 
@@ -12,6 +14,7 @@ const User = require("./models/user-model");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+app.use(passport.initialize())
 
 //Route Middleware
 app.use("/api/user", userRoutes)
