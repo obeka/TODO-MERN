@@ -1,5 +1,5 @@
 ## TV2Z - Todo Valut
-> :heavy_check_mark: All todos in just one place. Create, Edit and Delete your todos. Tag them. See how much time left fot the todo.:heavy_check_mark:
+> :heavy_check_mark: All todos in just one place. Create, Edit and Delete your todos. Tag them. See how much time left for the todo.:heavy_check_mark:
 [Direct Link to the app](https://mern-todo-obeka.web.app/auth)
 ## Table of contents
 - [Todo Vault](#todo-valut)
@@ -20,6 +20,7 @@ For
 * React.js - version 16.13.1
 * Node.js - version 12.14.0
 * Material-ui - version 4.11.0
+* Passport.js - version 0.4.1
 
 ## How to use
 To clone and run this application, you'll need Git and Node.js (which comes with npm) installed on your computer. We will use 2 seperate terminals, 1 for Back-end, 1 for Front-end
@@ -44,15 +45,17 @@ $ npm install
 $ npm start
 
 ##Example login credentials
-User name : omerbkk06@gmail.com
-Password : 123
+User name : john@doe.com
+Password : 123123
 ```
 
 ## Features
 
 * Create a new account and Log in 
+* Create a new account with Google Plus or GitHub accounts
 * Create, Read, Update and Delete todos
 * Put tags on todos
+* Mark as done
 * Sort todos according to criterias
 * Filter todos by tag names, you can filter with more than one tag name
 
