@@ -23,6 +23,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback func
+      console.log(profile);
       try {
         const user = await User.findOne({ email: profile.emails[0].value });
         if (user) {
@@ -53,6 +54,8 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // passport callback func
+      console.log(profile);
+
       try {
         const user = await User.findOne({ signupId: profile.id });
         if (user) {

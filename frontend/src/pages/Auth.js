@@ -258,7 +258,6 @@ export default function Auth() {
                 href={`${process.env.REACT_APP_BACKEND_URL}/user/google`}
                 variant="contained"
                 className={classes.socialIcon}
-                //onClick={handleGoogle}
               >
                 <Icon
                   path={mdiGooglePlus}
@@ -271,7 +270,6 @@ export default function Auth() {
                 href={`${process.env.REACT_APP_BACKEND_URL}/user/github`}
                 variant="contained"
                 className={classes.socialIcon}
-                //onClick={handleGoogle}
               >
                 <Icon
                   path={mdiGithub}
