@@ -59,9 +59,9 @@ Password : 123
 
 ## Screenshots
 ### Signup/ Login Page
-[![1.png](https://i.postimg.cc/Jzch7bYQ/1.png)](https://postimg.cc/QFCD0W3B)
+[![7.png](https://i.postimg.cc/fbKnQt8R/7.png)](https://postimg.cc/kVBhx4r0)
 ### HomePage
-[![3.png](https://i.postimg.cc/qBhyJ5sX/3.png)](https://postimg.cc/23YVTTXV)
+[![6.png](https://i.postimg.cc/NMdcm9Xz/6.png)](https://postimg.cc/Hc8RCLBw)
 ### Add a todo
 [![2.png](https://i.postimg.cc/Gmryj3Zq/2.png)](https://postimg.cc/ppGrWvVF)
 ### Filter todos
