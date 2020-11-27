@@ -1,6 +1,6 @@
 ## TV2Z - Todo Valut
 > :heavy_check_mark: All todos in just one place. Create, Edit and Delete your todos. Tag them. See how much time left for the todo.:heavy_check_mark:
-[Direct Link to the app](https://mern-todo-obeka.web.app/auth)
+[Direct Link to the app](https://mern-todo2.web.app/auth)
 ## Table of contents
 - [Todo Vault](#todo-valut)
   - [Table of contents](#table-of-contents)
